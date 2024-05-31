@@ -27,6 +27,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
     generateKeypad();
 });
 
+function generateRandomUsername(length = 8) {
+    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let username = '';
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        username += characters[randomIndex];
+    }
+    return username;
+}
+
+function warn(user) {
+    user = generateRandomUsername()
+    alert("Essa senha já é utilizada pelo usuário #{user}")
+}
+
 function updateCPF() {
     const cpfInput = document.getElementById('cpf');
     const cpfDisplay = document.getElementById('cpfDisplay');
