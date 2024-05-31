@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    initKeypad();
+});
+
+function initKeypad() {
     const keypad = document.getElementById('keypad');
     const passwordInput = document.getElementById('password');
     let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     generateKeypad();
-});
+}
 
 function generateRandomUsername(length = 8) {
     const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -37,9 +41,9 @@ function generateRandomUsername(length = 8) {
     return username;
 }
 
-function warn(user) {
-    user = generateRandomUsername()
-    alert("Essa senha já é utilizada pelo usuário #{user}")
+function warn() {
+    const user = generateRandomUsername();
+    alert(`Essa senha já é utilizada pelo usuário ${user}`);
 }
 
 function updateCPF() {
@@ -50,37 +54,9 @@ function updateCPF() {
 }
 
 function resetForm() {
-    warn()
+    warn();
     document.getElementById('registerForm').reset();
     document.getElementById('cpfDisplay').textContent = '000.000.000-00';
     document.getElementById('password').value = '';
-    document.getElementById('keypad').innerHTML = '';
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const keypad = document.getElementById('keypad');
-        const passwordInput = document.getElementById('password');
-        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-
-        function shuffle(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-
-        function generateKeypad() {
-            keypad.innerHTML = '';
-            shuffle(numbers);
-            numbers.forEach(number => {
-                const button = document.createElement('button');
-                button.textContent = number;
-                button.addEventListener('click', () => {
-                    passwordInput.value += number;
-                    generateKeypad();
-                });
-                keypad.appendChild(button);
-            });
-        }
-
-        generateKeypad();
-    });
+    initKeypad(); // Reinitialize the keypad
 }
