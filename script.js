@@ -50,6 +50,7 @@ function updateCPF() {
 }
 
 function resetForm() {
+    warn()
     document.getElementById('registerForm').reset();
     document.getElementById('cpfDisplay').textContent = '000.000.000-00';
     document.getElementById('password').value = '';
